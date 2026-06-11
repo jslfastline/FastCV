@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FastCV Pro - Professional Resume Builder</title>
+  <meta name="description" content="Build your professional CV in minutes with multiple templates" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <i class="fas fa-bolt logo-icon"></i>
+        <span class="logo-text">Fast<span class="logo-accent">CV</span> Pro</span>
+      </div>
+      <p class="header-tagline">Create Your Professional CV in Minutes</p>
+      <div class="header-actions">
+        <button id="templateBtn" class="btn btn-ghost">
+          <i class="fas fa-palette"></i> Templates
+        </button>
+        <button id="clearBtn" class="btn btn-ghost">
+          <i class="fas fa-trash-alt"></i> Clear
+        </button>
+        <button id="downloadBtn" class="btn btn-primary">
+          <i class="fas fa-download"></i> Download PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Template Selection Modal -->
+  <div id="templateModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-palette"></i> Choose Your CV Template</h2>
+        <span class="modal-close">&times;</span>
+      </div>
+      <div class="template-grid">
+        <div class="template-card" data-template="modern">
+          <div class="template-preview modern-preview">
+            <div class="preview-bar"></div>
+            <div class="preview-content">
+              <div class="preview-name">John Doe</div>
+              <div class="preview-title">Professional Title</div>
+            </div>
+          </div>
+          <h3>Modern</h3>
+          <p>Clean & professional with accent colors</p>
+          <button class="btn btn-sm select-template">Select</button>
+        </div>
+        
+        <div class="template-card" data-template="classic">
+          <div class="template-preview classic-preview">
+            <div class="preview-header-classic">
+              <div class="preview-name">John Doe</div>
+            </div>
+          </div>
+          <h3>Classic</h3>
+          <p>Traditional & elegant design</p>
+          <button class="btn btn-sm select-template">Select</button>
+        </div>
+        
+        <div class="template-card" data-template="minimal">
+          <div class="template-preview minimal-preview">
+            <div class="minimal-content">
+              <div class="preview-name">John Doe</div>
+            </div>
+          </div>
+          <h3>Minimal</h3>
+          <p>Simple & focused on content</p>
+          <button class="btn btn-sm select-template">Select</button>
+        </div>
+        
+        <div class="template-card" data-template="technical">
+          <div class="template-preview technical-preview">
+            <div class="tech-sidebar"></div>
+            <div class="tech-main"></div>
+          </div>
+          <h3>Technical</h3>
+          <p>Perfect for IT & Engineering</p>
+          <button class="btn btn-sm select-template">Select</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <main class="app-layout">
+    <!-- LEFT PANEL: FORM -->
+    <section class="panel panel-form">
+      <div class="form-progress">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <span class="progress-label" id="progressLabel">0% complete</span>
+      </div>
+
+      <!-- Section 1: Personal Details -->
+      <div class="form-section" id="section-personal">
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <div>
+            <h2 class="section-title">Personal Details</h2>
+            <p class="section-desc">Your basic information</p>
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field field-full">
+            <label for="fullName">Full Name <span class="required">*</span></label>
+            <input type="text" id="fullName" placeholder="e.g., Sarah Johnson" />
+            <span class="field-error" id="err-fullName"></span>
+          </div>
+
+          <div class="field">
+            <label for="proTitle">Professional Title <span class="required">*</span></label>
+            <input type="text" id="proTitle" placeholder="e.g., Senior Software Engineer" />
+            <span class="field-error" id="err-proTitle"></span>
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" placeholder="hello@example.com" />
+            <span class="field-error" id="err-email"></span>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+1 234 567 8900" />
+          </div>
+
+          <div class="field">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" />
+          </div>
+
+          <div class="field">
+            <label for="maritalStatus">Marital Status <span class="optional">(optional)</span></label>
+            <select id="maritalStatus">
+              <option value="">Select</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Divorced">Divorced</option>
+              <option value="Widowed">Widowed</option>
+            </select>
+          </div>
+
+          <div class="field field-full">
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="City, Country" />
+          </div>
+
+          <div class="field field-full">
+            <label for="linkedin">LinkedIn Profile</label>
+            <input type="url" id="linkedin" placeholder="https://linkedin.com/in/username" />
+          </div>
+
+          <div class="field field-full">
+            <label for="github">GitHub Portfolio</label>
+            <input type="url" id="github" placeholder="https://github.com/username" />
+          </div>
+
+          <div class="field field-full">
+            <label for="summary">Professional Summary</label>
+            <textarea id="summary" rows="4" placeholder="A brief overview of your career highlights and goals..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Work Experience -->
+      <div class="form-section" id="section-experience">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <div>
+            <h2 class="section-title">Work Experience</h2>
+            <p class="section-desc">Your professional journey</p>
+          </div>
+        </div>
+
+        <div id="experiencesContainer"></div>
+        <button id="addExperienceBtn" class="btn btn-accent btn-sm">
+          <i class="fas fa-plus"></i> Add Another Job
+        </button>
+      </div>
+
+      <!-- Section 3: Education -->
+      <div class="form-section" id="section-education">
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <div>
+            <h2 class="section-title">Education</h2>
+            <p class="section-desc">Your academic background</p>
+          </div>
+        </div>
+
+        <div id="educationContainer"></div>
+        <button id="addEducationBtn" class="btn btn-accent btn-sm">
+          <i class="fas fa-plus"></i> Add Another Degree
+        </button>
+      </div>
+
+      <!-- Section 4: Skills -->
+      <div class="form-section" id="section-skills">
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <div>
+            <h2 class="section-title">Skills</h2>
+            <p class="section-desc">Technical & professional skills</p>
+          </div>
+        </div>
+
+        <div class="skill-input-row">
+          <input type="text" id="skillInput" placeholder="e.g., Python, Project Management, Data Analysis..." />
+          <button id="addSkillBtn" class="btn btn-accent"><i class="fas fa-plus"></i> Add</button>
+        </div>
+        <div id="skillsTags" class="skills-tags"></div>
+      </div>
+
+      <!-- Section 5: Certifications -->
+      <div class="form-section" id="section-certifications">
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <div>
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-desc">Professional certifications & awards</p>
+          </div>
+        </div>
+
+        <div id="certificationsContainer"></div>
+        <button id="addCertificationBtn" class="btn btn-accent btn-sm">
+          <i class="fas fa-plus"></i> Add Certification
+        </button>
+      </div>
+
+      <!-- Section 6: Languages -->
+      <div class="form-section" id="section-languages">
+        <div class="section-header">
+          <span class="section-number">06</span>
+          <div>
+            <h2 class="section-title">Languages</h2>
+            <p class="section-desc">Languages you speak</p>
+          </div>
+        </div>
+
+        <div id="languagesContainer"></div>
+        <button id="addLanguageBtn" class="btn btn-accent btn-sm">
+          <i class="fas fa-plus"></i> Add Language
+        </button>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: LIVE PREVIEW -->
+    <section class="panel panel-preview">
+      <div class="preview-toolbar">
+        <span class="preview-label">
+          <i class="fas fa-eye"></i> Live Preview
+        </span>
+        <span class="preview-badge" id="previewBadge">
+          <i class="fas fa-check-circle"></i> Auto-saved
+        </span>
+      </div>
+
+      <div id="resumePreview" class="resume-card template-modern">
+        <!-- Dynamic content loaded by JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><i class="fas fa-shield-alt"></i> Your data stays on your device · Built with FastCV Pro</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

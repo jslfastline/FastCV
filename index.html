@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FastCV — Professional Resume Builder</title>
+    <meta
+      name="description"
+      content="Build a professional CV in minutes. Choose a template, fill your details, download PDF."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ══ LOADING SPLASH ══ -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="loading-inner">
+        <div class="loading-logo">⚡ Fast<span>CV</span></div>
+        <div class="loading-bar"><div class="loading-fill"></div></div>
+        <p>Loading workspace…</p>
+      </div>
+    </div>
+
+    <!-- ══ TOAST ══ -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- ══ HEADER ══ -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-bolt">⚡</span>
+          <span class="logo-word">Fast<span class="logo-accent">CV</span></span>
+        </div>
+        <nav class="header-steps" id="headerSteps">
+          <button class="step-pill active" data-step="0">
+            <span class="step-num">1</span
+            ><span class="step-label">Template</span>
+          </button>
+          <span class="step-sep">›</span>
+          <button class="step-pill" data-step="1">
+            <span class="step-num">2</span
+            ><span class="step-label">Your Details</span>
+          </button>
+          <span class="step-sep">›</span>
+          <button class="step-pill" data-step="2" disabled>
+            <span class="step-num">3</span
+            ><span class="step-label">Export</span>
+          </button>
+        </nav>
+        <div class="header-right">
+          <div class="autosave-badge" id="autosaveBadge">
+            <span class="badge-dot"></span><span id="autosaveText">Saved</span>
+          </div>
+          <button id="goProBtn" class="btn btn-outline-accent btn-sm go-pro-btn">✨ Go Pro</button>
+          <button id="clearBtn" class="btn btn-ghost btn-sm">Clear all</button>
+          <button id="downloadBtn" class="btn btn-primary btn-sm">
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download PDF
+          </button>
+        </div>
+      </div>
+      <div class="header-progress-bar">
+        <div class="header-progress-fill" id="headerProgressFill"></div>
+      </div>
+    </header>
+
+    <!-- ══════════════════════════════════════════════════
+     STEP 0 — TEMPLATE CHOOSER
+══════════════════════════════════════════════════ -->
+    <section
+      id="stepTemplate"
+      class="step-screen active-step"
+      aria-label="Choose a template"
+    >
+      <div class="chooser-wrap">
+        <div class="chooser-hero">
+          <h1>Choose your template</h1>
+          <p>
+            Pick a layout that matches your style. You can switch at any time.
+          </p>
+        </div>
+
+        <div class="templates-grid">
+          <!-- NEXUS -->
+          <div class="tcard" data-template="nexus" data-premium="false">
+            <div class="tcard-preview">
+              <div class="tp-nexus">
+                <div class="tp-nx-header">
+                  <div class="tp-nx-avatar"></div>
+                  <div class="tp-nx-id">
+                    <div class="tp-line w80 bold"></div>
+                    <div class="tp-line w50 accent"></div>
+                  </div>
+                </div>
+                <div class="tp-nx-strip">
+                  <div class="tp-line w40"></div>
+                  <div class="tp-line w30"></div>
+                  <div class="tp-line w35"></div>
+                </div>
+                <div class="tp-nx-body">
+                  <div class="tp-section-bar"></div>
+                  <div class="tp-line w90"></div>
+                  <div class="tp-line w70"></div>
+                  <div class="tp-section-bar mt8"></div>
+                  <div class="tp-entry">
+                    <div class="tp-line w60"></div>
+                    <div class="tp-line w40 muted"></div>
+                  </div>
+                  <div class="tp-section-bar mt8"></div>
+                  <div class="tp-pills">
+                    <div class="tp-pill"></div>
+                    <div class="tp-pill"></div>
+                    <div class="tp-pill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tcard-info">
+              <span class="tcard-badge">Most Popular</span>
+              <h3>Nexus</h3>
+              <p>
+                Bold dark header with clean white body. Ideal for tech,
+                engineering, and creative roles.
+              </p>
+              <button class="btn btn-primary">Use Nexus →</button>
+            </div>
+          </div>
+
+          <!-- PRESTIGE -->
+          <div class="tcard is-premium" data-template="prestige" data-premium="true">
+            <div class="tcard-preview">
+              <div class="tp-prestige">
+                <div class="tp-pg-sidebar">
+                  <div class="tp-pg-avatar"></div>
+                  <div class="tp-line w70 bold mt6"></div>
+                  <div class="tp-line w50 accent mt2"></div>
+                  <div class="tp-section-bar mt8"></div>
+                  <div class="tp-line w80 mt4"></div>
+                  <div class="tp-line w70 mt2"></div>
+                  <div class="tp-section-bar mt8"></div>
+                  <div class="tp-pills col">
+                    <div class="tp-pill"></div>
+                    <div class="tp-pill"></div>
+                  </div>
+                </div>
+                <div class="tp-pg-main">
+                  <div class="tp-section-bar"></div>
+                  <div class="tp-line w90 mt4"></div>
+                  <div class="tp-line w75 mt2"></div>
+                  <div class="tp-section-bar mt8"></div>
+                  <div class="tp-entry">
+                    <div class="tp-line w70"></div>
+                    <div class="tp-line w50 muted mt2"></div>
+                  </div>
+                  <div class="tp-entry">
+                    <div class="tp-line w65"></div>
+                    <div class="tp-line w45 muted mt2"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tcard-info">
+              <span class="tcard-badge premium">Premium</span>
+              <h3>Prestige</h3>
+              <p>
+                Sidebar layout with accent column. Structured and elegant for
+                management and executive roles.
+              </p>
+              <button class="btn btn-primary">Use Prestige →</button>
+            </div>
+          </div>
+
+          <!-- MINIMAL -->
+          <div class="tcard is-premium" data-template="minimal" data-premium="true">
+            <div class="tcard-preview">
+              <div class="tp-minimal">
+                <div class="tp-mn-header">
+                  <div class="tp-line w75 bold"></div>
+                  <div class="tp-line w45 accent mt2"></div>
+                  <div class="tp-mn-contacts">
+                    <div class="tp-line w30"></div>
+                    <div class="tp-line w25"></div>
+                    <div class="tp-line w28"></div>
+                  </div>
+                </div>
+                <div class="tp-mn-divider"></div>
+                <div class="tp-section-bar"></div>
+                <div class="tp-line w95 mt4"></div>
+                <div class="tp-line w80 mt2"></div>
+                <div class="tp-section-bar mt8"></div>
+                <div class="tp-entry">
+                  <div class="tp-line w65"></div>
+                  <div class="tp-line w50 muted mt2"></div>
+                </div>
+                <div class="tp-section-bar mt8"></div>
+                <div class="tp-pills">
+                  <div class="tp-pill"></div>
+                  <div class="tp-pill"></div>
+                  <div class="tp-pill"></div>
+                </div>
+              </div>
+            </div>
+            <div class="tcard-info">
+              <span class="tcard-badge premium">Premium</span>
+              <h3>Minimal</h3>
+              <p>
+                Typography-first, no distractions. Clean and timeless — works in
+                any industry.
+              </p>
+              <button class="btn btn-primary">Use Minimal →</button>
+            </div>
+          </div>
+        </div>
+        <!-- /.templates-grid -->
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+     STEP 1 — EDITOR (FORM + LIVE PREVIEW)
+══════════════════════════════════════════════════ -->
+    <section id="stepEditor" class="step-screen" aria-label="Edit your CV">
+      <div class="editor-layout">
+        <!-- FORM PANEL -->
+        <div class="form-panel" id="formPanel">
+          <div class="fp-toolbar">
+            <div class="fp-progress">
+              <div class="fp-bar"><div class="fp-fill" id="fpFill"></div></div>
+              <span id="fpPct">0% filled</span>
+            </div>
+            <button class="btn btn-ghost btn-xs" id="changeTemplateBtn">
+              ← Templates
+            </button>
+          </div>
+
+          <!-- AI ATS OPTIMIZER (premium upsell widget) -->
+          <div class="ai-optimizer" id="aiOptimizer">
+            <div class="ai-optimizer-head">
+              <span class="ai-icon">✨</span>
+              <h4>AI ATS Optimizer <span class="ai-lock">🔒</span></h4>
+            </div>
+            <p>Get an instant ATS compatibility score and AI-written suggestions to make every section stronger.</p>
+            <div class="ai-score-row">
+              <div class="ai-score-ring"><span>72</span></div>
+              <div class="ai-score-meta">ATS Score · 3 suggestions found</div>
+            </div>
+            <button class="btn btn-accent btn-sm" id="aiOptimizerBtn">Unlock AI Optimizer</button>
+          </div>
+
+          <!-- A: Personal Details -->
+          <div class="fs" id="fs-personal">
+            <div class="fs-head">
+              <span class="fs-alpha">A</span>
+              <div class="fs-titles">
+                <h2>Personal Details</h2>
+                <p>Core contact and personal info</p>
+              </div>
+              <button class="fs-caret" aria-label="Toggle">▾</button>
+            </div>
+            <div class="fs-body">
+              <div class="fg">
+                <div class="f f2">
+                  <label>Full Name <em>*</em></label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Josephat Athanas"
+                    autocomplete="name"
+                  />
+                  <span class="ferr" id="err-fullName"></span>
+                </div>
+                <div class="f f2">
+                  <label>Professional Title <em>*</em></label>
+                  <input
+                    type="text"
+                    id="proTitle"
+                    placeholder="Network Engineer"
+                  />
+                  <span class="ferr" id="err-proTitle"></span>
+                </div>
+                <div class="f">
+                  <label>Email <em>*</em></label>
+                  <input type="email" id="email" placeholder="you@email.com" />
+                  <span class="ferr" id="err-email"></span>
+                </div>
+                <div class="f">
+                  <label>Phone</label>
+                  <input type="tel" id="phone" placeholder="+255 718 000 000" />
+                </div>
+                <div class="f">
+                  <label>City / Location</label>
+                  <input
+                    type="text"
+                    id="location"
+                    placeholder="Mbeya, Tanzania"
+                  />
+                </div>
+                <div class="f">
+                  <label>Nationality</label>
+                  <input type="text" id="nationality" placeholder="Tanzanian" />
+                </div>
+                <div class="f">
+                  <label>Date of Birth <span class="opt">optional</span></label>
+                  <input type="date" id="dob" />
+                </div>
+                <div class="f">
+                  <label>Gender <span class="opt">optional</span></label>
+                  <select id="gender">
+                    <option value="">Select…</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </div>
+                <div class="f">
+                  <label
+                    >Marital Status <span class="opt">optional</span></label
+                  >
+                  <select id="marital">
+                    <option value="">Select…</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Divorced</option>
+                    <option>Widowed</option>
+                  </select>
+                </div>
+                <div class="f">
+                  <label
+                    >LinkedIn / Website <span class="opt">optional</span></label
+                  >
+                  <input
+                    type="url"
+                    id="linkedin"
+                    placeholder="linkedin.com/in/name"
+                  />
+                </div>
+                <div class="f f2">
+                  <label>Professional Summary <em>*</em></label>
+                  <textarea
+                    id="summary"
+                    rows="4"
+                    placeholder="A compelling summary of your experience, strengths, and goals…"
+                  ></textarea>
+                  <span class="ferr" id="err-summary"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- B: Education -->
+          <div class="fs" id="fs-education">
+            <div class="fs-head">
+              <span class="fs-alpha">B</span>
+              <div class="fs-titles">
+                <h2>Academic Background</h2>
+                <p>Universities, colleges, diplomas</p>
+              </div>
+              <button class="fs-caret" aria-label="Toggle">▾</button>
+            </div>
+            <div class="fs-body">
+              <div id="eduList" class="rep-list"></div>
+              <button class="btn btn-outline-accent btn-sm" id="addEduBtn">
+                + Add Education
+              </button>
+            </div>
+          </div>
+
+          <!-- C: Work Experience -->
+          <div class="fs" id="fs-work">
+            <div class="fs-head">
+              <span class="fs-alpha">C</span>
+              <div class="fs-titles">
+                <h2>Work Experience</h2>
+                <p>Companies, roles, achievements</p>
+              </div>
+              <button class="fs-caret" aria-label="Toggle">▾</button>
+            </div>
+            <div class="fs-body">
+              <div id="workList" class="rep-list"></div>
+              <button class="btn btn-outline-accent btn-sm" id="addWorkBtn">
+                + Add Experience
+              </button>
+            </div>
+          </div>
+
+          <!-- D: Skills -->
+          <div class="fs" id="fs-skills">
+            <div class="fs-head">
+              <span class="fs-alpha">D</span>
+              <div class="fs-titles">
+                <h2>Skills &amp; Tools</h2>
+                <p>Technical skills, software, soft skills</p>
+              </div>
+              <button class="fs-caret" aria-label="Toggle">▾</button>
+            </div>
+            <div class="fs-body">
+              <div class="skill-row">
+                <input
+                  type="text"
+                  id="skillInput"
+                  placeholder="Python, Cisco, Leadership… (comma-separated)"
+                />
+                <button id="addSkillBtn" class="btn btn-accent btn-sm">
+                  Add
+                </button>
+              </div>
+              <div id="skillsTags" class="tags-wrap"></div>
+            </div>
+          </div>
+
+          <!-- E: Languages -->
+          <div class="fs" id="fs-languages">
+            <div class="fs-head">
+              <span class="fs-alpha">E</span>
+              <div class="fs-titles">
+                <h2>Languages</h2>
+                <p>Languages and proficiency levels</p>
+              </div>
+              <button class="fs-caret" aria-label="Toggle">▾</button>
+            </div>
+            <div class="fs-body">
+              <div id="langList" class="rep-list"></div>
+              <button class="btn btn-outline-accent btn-sm" id="addLangBtn">
+                + Add Language
+              </button>
+            </div>
+          </div>
+
+          <!-- F: Certifications -->
+          <div class="fs" id="fs-certs">
+            <div class="fs-head">
+              <span class="fs-alpha">F</span>
+              <div class="fs-titles">
+                <h2>Certifications</h2>
+                <p>Professional certificates — optional</p>
+              </div>
+              <button class="fs-caret" aria-label="Toggle">▾</button>
+            </div>
+            <div class="fs-body">
+              <div id="certList" class="rep-list"></div>
+              <button class="btn btn-outline-accent btn-sm" id="addCertBtn">
+                + Add Certification
+              </button>
+            </div>
+          </div>
+
+          <!-- G: References -->
+          <div class="fs" id="fs-refs">
+            <div class="fs-head">
+              <span class="fs-alpha">G</span>
+              <div class="fs-titles">
+                <h2>References</h2>
+                <p>Professional referees — optional</p>
+              </div>
+              <button class="fs-caret" aria-label="Toggle">▾</button>
+            </div>
+            <div class="fs-body">
+              <div id="refList" class="rep-list"></div>
+              <button class="btn btn-outline-accent btn-sm" id="addRefBtn">
+                + Add Reference
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- /.form-panel -->
+
+        <!-- PREVIEW PANEL -->
+        <div class="preview-panel">
+          <div class="pv-toolbar">
+            <span class="pv-label">Live Preview</span>
+            <span class="pv-template-chip" id="pvChip">Nexus</span>
+          </div>
+          <div class="pv-scale-wrap">
+            <div id="resumePreview" class="resume-paper">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>FastCV · Data stays on your device · No account required</p>
+    </footer>
+
+    <!-- ══ PAYMENT MODAL (Premium upgrade) ══ -->
+    <div id="paymentModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="paymentModalTitle">
+      <div class="modal-card">
+        <button class="modal-close" id="paymentModalClose" aria-label="Close">✕</button>
+        <div class="modal-icon">🔓</div>
+        <h3 id="paymentModalTitle">Unlock this template</h3>
+        <p class="modal-sub">This is a Premium template. Upgrade once to download it watermark-free and unlock every premium feature.</p>
+        <ul class="modal-features">
+          <li>All Premium templates (Prestige, Minimal &amp; more)</li>
+          <li>No "Created via JSL FastLine" watermark</li>
+          <li>AI ATS Optimizer with section-by-section feedback</li>
+          <li>Unlimited PDF downloads</li>
+        </ul>
+        <div class="modal-price">
+          <span class="amount">TZS 9,900</span>
+          <span class="period">/ one-time</span>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" id="paymentUpgradeBtn">Upgrade now</button>
+          <button class="btn btn-ghost" id="paymentMaybeLaterBtn">Maybe later</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
